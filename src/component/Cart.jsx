@@ -1,6 +1,6 @@
 import { CardItem } from "./CardItem";
 
-export function Cart({ cartItems }) {
+export function Cart({ cartItems , onClickRemove}) {
   return (
     <div>
       <h2 className="dark:text-white text-black font-bold mb-10 text-2xl">
@@ -10,7 +10,7 @@ export function Cart({ cartItems }) {
         {cartItems.map((shoe) => {
           return (
             <li key={shoe.product.id}>
-              <CardItem item={shoe} />
+              <CardItem item={shoe} onClickRemove={onClickRemove}/>
             </li>
           );
         })}

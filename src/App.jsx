@@ -7,15 +7,43 @@ import { SideBar } from "./component/SideBar";
 import { useEffect, useState } from "react";
 import { Cart } from "./component/Cart";
 import { BiSun, BiMoon } from "react-icons/bi";
-const FAKE_CART_ITEM = SHOES.map((shoe) => {
-  return {
-    product: shoe,
-    qty: 1,
-    size: 44,
-  };
-});
+
 export function App() {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+  const [currentShoe, setCurrentShoe] = useState(SHOES[0]);
+  const [cartItems, setCartItems] = useState([]);
+
+  const removeFromCard = (productId) => {
+    const updatedCardItem = [...cartItems];
+    const filterCards = updatedCardItem.filter(
+      (item) => item.product.id !== productId
+    );
+    setCartItems(filterCards);
+  };
+
+  const addToCart = (product, qty, size) => {
+    if (qty && size) {
+      const updatedCardItem = [...cartItems];
+      console.log(product);
+      const existItemIndex = cartItems.findIndex((item) => {
+        return item.product.id === product.id;
+      });
+      console.log(existItemIndex);
+      if (existItemIndex > -1) {
+        updatedCardItem[existItemIndex].qty = qty;
+        updatedCardItem[existItemIndex].size = size;
+      } else {
+        updatedCardItem.push({
+          product,
+          qty,
+          size,
+        });
+      }
+
+      setCartItems(updatedCardItem);
+    }
+  };
+
   useEffect(() => {
     const isDarkMode = localStorage.getItem("isDarkMode");
     if (isDarkMode === "true") {
@@ -32,13 +60,13 @@ export function App() {
   return (
     <div className="p-10 xl:px-24 animate-fadein dark:bg-night">
       <Nav onClickShoppingButton={() => setIsSideBarOpen(true)} />
-      <ShoeDetail />
-      <NewArrivalSection items={SHOES} />
+      <ShoeDetail shoe={currentShoe} onClickAdd={addToCart} />
+      <NewArrivalSection items={SHOES} onClickCard={setCurrentShoe} />
       <SideBar
         isOpen={isSideBarOpen}
         onClickClose={() => setIsSideBarOpen(false)}
       >
-        <Cart cartItems={FAKE_CART_ITEM} />
+        <Cart cartItems={cartItems} onClickRemove={removeFromCard} />
       </SideBar>
       <div className="fixed bottom-4 right-4">
         <button

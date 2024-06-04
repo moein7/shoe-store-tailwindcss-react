@@ -6,36 +6,36 @@ import nike3 from "./assets/n3-min.png";
 import nike4 from "./assets/n4-min.png";
 export const SHOES = [
   {
-    id: Math.random() * 125,
+    id: 1,
     title: "Nike Air Max 270",
-    desciption:
+    description:
       "The Nike Air max 270 is lifestyle shoe that's sure to turn a heads with its vibrant colors gradiant",
     price: 100,
     src: nike1,
     clasName: "bg-[#EEFFA4]",
   },
   {
-    id: Math.random() * 125,
+    id: 2,
     title: "Nike Raptor",
-    desciption:
+    description:
       "The Nike Raptor is lifestyle shoe that's sure to turn a heads with its vibrant colors gradiant",
     price: 120,
     src: nike2,
     clasName: "bg-[#FEC260]",
   },
   {
-    id: Math.random() * 125,
+    id: 3,
     title: "Nike Maptor XL 2400",
-    desciption:
+    description:
       "The Nike  Maptor XL 2400 is lifestyle shoe that's sure to turn a heads with its vibrant colors gradiant",
     price: 900,
     src: nike3,
     clasName: "bg-[#3FA796]",
   },
   {
-    id: Math.random() * 125,
+    id: 4,
     title: "Nike Strength 200Lk",
-    desciption:
+    description:
       "The Nike Strength 200Lk is lifestyle shoe that's sure to turn a heads with its vibrant colors gradiant",
     price: 319,
     src: nike4,
